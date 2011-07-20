@@ -154,11 +154,13 @@ class Kohana_View {
 	{
 		if (isset($this->_data[$key]))
 		{
-			return $this->_data[$key];
+		  $val = is_string($this->_data[$key]) ? htmlspecialchars($this->_data[$key], ENT_QUOTES, 'UTF-8', false) : $this->_data[$key];
+			return $val;
 		}
 		elseif (isset(View::$_global_data[$key]))
 		{
-			return View::$_global_data[$key];
+		  $val = is_string(View::$_global_data[$key]) ? htmlspecialchars(View::$_global_data[$key], ENT_QUOTES, 'UTF-8', false) : View::$_global_data[$key];
+			return $val;
 		}
 		else
 		{
